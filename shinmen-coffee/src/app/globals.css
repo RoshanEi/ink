@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Caveat:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Coffee Color Psychology Palette */
+  --coffee-primary: #8B4513;
+  --coffee-secondary: #D2B48C;
+  --coffee-accent: #F4E4C1;
+  --coffee-dark: #2F1B14;
+  --coffee-light: #FFF8DC;
+  --coffee-gold: #CD853F;
+  
+  /* Typography Scale */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-accent: 'Caveat', cursive;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  /* Animation Easing */
+  --ease-coffee: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-steam: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-pour: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  /* Performance Optimizations */
+  --gpu-accelerated: translateZ(0);
+  --will-change: will-change;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--coffee-dark);
+  background-color: var(--coffee-light);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography System */
+.heading-primary {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.heading-secondary {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.body-text {
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.accent-text {
+  font-family: var(--font-accent);
+  font-weight: 500;
+}
+
+.mono-text {
+  font-family: var(--font-mono);
+  font-weight: 400;
+}
+
+/* Coffee-Specific Animations */
+@keyframes steamRise {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8) blur(2px);
+  }
+  25% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1) blur(1px);
+  }
+  75% {
+    opacity: 0.7;
+    transform: translateY(-40px) scale(1.2) blur(2px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-80px) scale(1.5) blur(4px);
+  }
+}
+
+@keyframes beanFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(180deg);
+  }
+}
+
+@keyframes liquidPour {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  100% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+}
+
+@keyframes cremaForm {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    opacity: 0.8;
+  }
+}
+
+/* Utility Classes */
+.steam-animation {
+  animation: steamRise 4s infinite var(--ease-steam);
+}
+
+.bean-float {
+  animation: beanFloat 8s infinite ease-in-out;
+}
+
+.liquid-pour {
+  animation: liquidPour 2s var(--ease-pour) forwards;
+}
+
+.crema-form {
+  animation: cremaForm 3s var(--ease-coffee) forwards;
+}
+
+/* Performance Optimizations */
+.gpu-accelerated {
+  transform: var(--gpu-accelerated);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--coffee-accent);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--coffee-secondary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--coffee-primary);
+}
+
+/* Focus States */
+.focus-visible {
+  outline: 2px solid var(--coffee-gold);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--coffee-accent);
+  color: var(--coffee-dark);
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --coffee-primary: #000000;
+    --coffee-secondary: #333333;
+    --coffee-accent: #ffffff;
+    --coffee-dark: #000000;
+    --coffee-light: #ffffff;
+    --coffee-gold: #666666;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
